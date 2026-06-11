@@ -1,0 +1,246 @@
+[debug] [2026-06-11T12:20:15.656Z] ----------------------------------------------------------------------
+[debug] [2026-06-11T12:20:15.659Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\angel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2026-06-11T12:20:15.659Z] CLI Version:   15.15.0
+[debug] [2026-06-11T12:20:15.659Z] Platform:      win32
+[debug] [2026-06-11T12:20:15.659Z] Node Version:  v24.14.0
+[debug] [2026-06-11T12:20:15.659Z] Time:          Thu Jun 11 2026 14:20:15 GMT+0200 (hora de verano de Europa central)
+[debug] [2026-06-11T12:20:15.659Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-11T12:20:15.661Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\angel\Desktop\PERSONAL\varios\PROYECTOS PERSONALES\CONCURSOS\PUNTAJES
+
+[debug] [2026-06-11T12:20:18.028Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-06-11T12:20:18.029Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-06-11T12:21:08.363Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (C:\Users\angel\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\@inquirer\core\dist\commonjs\lib\create-prompt.js:101:37)
+    at Interface.emit (node:events:508:28)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1327:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:284:20)
+    at ReadStream.emit (node:events:520:35)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+    at ReadStream.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:563:12)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-06-11T12:21:11.715Z] ----------------------------------------------------------------------
+[debug] [2026-06-11T12:21:11.717Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\angel\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2026-06-11T12:21:11.717Z] CLI Version:   15.15.0
+[debug] [2026-06-11T12:21:11.717Z] Platform:      win32
+[debug] [2026-06-11T12:21:11.718Z] Node Version:  v24.14.0
+[debug] [2026-06-11T12:21:11.718Z] Time:          Thu Jun 11 2026 14:21:11 GMT+0200 (hora de verano de Europa central)
+[debug] [2026-06-11T12:21:11.718Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\angel\Desktop\PERSONAL\varios\PROYECTOS PERSONALES\CONCURSOS\PUNTAJES
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-06-11T12:23:15.888Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-11T12:23:15.889Z] > authorizing via signed-in user (271099ac@gmail.com)
+[debug] [2026-06-11T12:23:15.890Z] Checked if tokens are valid: false, expires at: 1780490366166
+[debug] [2026-06-11T12:23:15.891Z] Checked if tokens are valid: false, expires at: 1780490366166
+[debug] [2026-06-11T12:23:15.891Z] > refreshing access token with scopes: []
+[debug] [2026-06-11T12:23:15.893Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-06-11T12:23:15.893Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-11T12:23:16.020Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-06-11T12:23:16.020Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-11T12:23:16.042Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2026-06-11T12:23:16.513Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-06-11T12:23:16.514Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] 
+=== Dataconnect Setup
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[debug] [2026-06-11T12:23:22.853Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:22.853Z] Checked if tokens are valid: true, expires at: 1781184195020
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2026-06-11T12:23:22.854Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:22.854Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:22.854Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-06-11T12:23:22.854Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com  x-goog-user-project=realtimescores-ce78f
+[debug] [2026-06-11T12:23:22.855Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com [none]
+[debug] [2026-06-11T12:23:22.856Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com  x-goog-user-project=realtimescores-ce78f
+[debug] [2026-06-11T12:23:23.744Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com 200
+[debug] [2026-06-11T12:23:23.744Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com [omitted]
+[warn] !  dataconnect: missing required API sqladmin.googleapis.com. Enabling now... 
+[debug] [2026-06-11T12:23:23.745Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:23.746Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:23.746Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com:enable [none]
+[debug] [2026-06-11T12:23:23.746Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com:enable  x-goog-user-project=realtimescores-ce78f
+[debug] [2026-06-11T12:23:23.758Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-06-11T12:23:23.758Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com [omitted]
+[warn] !  dataconnect: missing required API firebasedataconnect.googleapis.com. Enabling now... 
+[debug] [2026-06-11T12:23:23.758Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:23.759Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:23.759Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com:enable [none]
+[debug] [2026-06-11T12:23:23.759Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com:enable  x-goog-user-project=realtimescores-ce78f
+[debug] [2026-06-11T12:23:24.556Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com:enable 200
+[debug] [2026-06-11T12:23:24.557Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/firebasedataconnect.googleapis.com:enable [omitted]
+[debug] [2026-06-11T12:23:24.853Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com:enable 200
+[debug] [2026-06-11T12:23:24.853Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/sqladmin.googleapis.com:enable [omitted]
+[debug] [2026-06-11T12:23:34.876Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:34.877Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:23:34.877Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/-/services [none]
+[debug] [2026-06-11T12:23:35.902Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/-/services 200
+[debug] [2026-06-11T12:23:35.902Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/-/services {}
+[info] i  : ensuring required API cloudaicompanion.googleapis.com is enabled... 
+[debug] [2026-06-11T12:24:16.760Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:16.760Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:16.761Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/cloudaicompanion.googleapis.com [none]
+[debug] [2026-06-11T12:24:16.761Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/cloudaicompanion.googleapis.com  x-goog-user-project=realtimescores-ce78f
+[debug] [2026-06-11T12:24:17.567Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/cloudaicompanion.googleapis.com 200
+[debug] [2026-06-11T12:24:17.567Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/realtimescores-ce78f/services/cloudaicompanion.googleapis.com [omitted]
+[info] +  : required API cloudaicompanion.googleapis.com is enabled 
+[debug] [2026-06-11T12:24:27.198Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:27.198Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:27.199Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/realtimescores-ce78f/billingInfo [none]
+[debug] [2026-06-11T12:24:27.576Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/realtimescores-ce78f/billingInfo 200
+[debug] [2026-06-11T12:24:27.576Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/realtimescores-ce78f/billingInfo {"name":"projects/realtimescores-ce78f/billingInfo","projectId":"realtimescores-ce78f","billingAccountName":"","billingEnabled":false}
+[debug] [2026-06-11T12:24:27.577Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:27.577Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:27.577Z] >>> [apiv2][query] GET https://monitoring.googleapis.com/v3/projects/realtimescores-ce78f/timeSeries/ filter=metric.type%3D%22serviceruntime.googleapis.com%2Fquota%2Fallocation%2Fusage%22+AND+metric.label.quota_metric+%3D+%22sqladmin.googleapis.com%2Ffdc_lifetime_free_trial_per_project%22&interval.endTime=2026-06-11T12%3A24%3A27.576Z&interval.startTime=2026-06-04T12%3A24%3A27.576Z
+[debug] [2026-06-11T12:24:28.312Z] <<< [apiv2][status] GET https://monitoring.googleapis.com/v3/projects/realtimescores-ce78f/timeSeries/ 200
+[debug] [2026-06-11T12:24:28.313Z] <<< [apiv2][body] GET https://monitoring.googleapis.com/v3/projects/realtimescores-ce78f/timeSeries/ {"unit":"1"}
+[info] +  dataconnect: CloudSQL no cost trial available! 
+[debug] [2026-06-11T12:24:28.314Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:28.314Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:28.314Z] >>> [apiv2][query] GET https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances [none]
+[debug] [2026-06-11T12:24:28.929Z] <<< [apiv2][status] GET https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances 200
+[debug] [2026-06-11T12:24:28.929Z] <<< [apiv2][body] GET https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances {}
+[debug] [2026-06-11T12:24:28.929Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:28.930Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:24:28.930Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations [none]
+[debug] [2026-06-11T12:24:29.658Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations 200
+[debug] [2026-06-11T12:24:29.659Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations {"locations":[{"name":"projects/realtimescores-ce78f/locations/asia-east1","locationId":"asia-east1","displayName":"Taiwan"},{"name":"projects/realtimescores-ce78f/locations/asia-east2","locationId":"asia-east2","displayName":"Hong Kong"},{"name":"projects/realtimescores-ce78f/locations/asia-northeast1","locationId":"asia-northeast1","displayName":"Tokyo"},{"name":"projects/realtimescores-ce78f/locations/asia-northeast2","locationId":"asia-northeast2","displayName":"Osaka"},{"name":"projects/realtimescores-ce78f/locations/asia-northeast3","locationId":"asia-northeast3","displayName":"Seoul"},{"name":"projects/realtimescores-ce78f/locations/asia-south1","locationId":"asia-south1","displayName":"Mumbai"},{"name":"projects/realtimescores-ce78f/locations/asia-southeast1","locationId":"asia-southeast1","displayName":"Singapore"},{"name":"projects/realtimescores-ce78f/locations/asia-southeast2","locationId":"asia-southeast2","displayName":"Jakarta"},{"name":"projects/realtimescores-ce78f/locations/australia-southeast1","locationId":"australia-southeast1","displayName":"Sydney"},{"name":"projects/realtimescores-ce78f/locations/australia-southeast2","locationId":"australia-southeast2","displayName":"Melbourne"},{"name":"projects/realtimescores-ce78f/locations/europe-central2","locationId":"europe-central2","displayName":"Warsaw"},{"name":"projects/realtimescores-ce78f/locations/europe-north1","locationId":"europe-north1","displayName":"Finland"},{"name":"projects/realtimescores-ce78f/locations/europe-southwest1","locationId":"europe-southwest1","displayName":"Madrid"},{"name":"projects/realtimescores-ce78f/locations/europe-west1","locationId":"europe-west1","displayName":"Belgium"},{"name":"projects/realtimescores-ce78f/locations/europe-west2","locationId":"europe-west2","displayName":"London"},{"name":"projects/realtimescores-ce78f/locations/europe-west3","locationId":"europe-west3","displayName":"Frankfurt"},{"name":"projects/realtimescores-ce78f/locations/europe-west4","locationId":"europe-west4","displayName":"Netherlands"},{"name":"projects/realtimescores-ce78f/locations/europe-west6","locationId":"europe-west6","displayName":"Zurich"},{"name":"projects/realtimescores-ce78f/locations/europe-west8","locationId":"europe-west8","displayName":"Milan"},{"name":"projects/realtimescores-ce78f/locations/europe-west9","locationId":"europe-west9","displayName":"Paris"},{"name":"projects/realtimescores-ce78f/locations/me-west1","locationId":"me-west1","displayName":"Tel Aviv"},{"name":"projects/realtimescores-ce78f/locations/northamerica-northeast1","locationId":"northamerica-northeast1","displayName":"Montréal"},{"name":"projects/realtimescores-ce78f/locations/northamerica-northeast2","locationId":"northamerica-northeast2","displayName":"Toronto"},{"name":"projects/realtimescores-ce78f/locations/southamerica-east1","locationId":"southamerica-east1","displayName":"São Paulo"},{"name":"projects/realtimescores-ce78f/locations/southamerica-west1","locationId":"southamerica-west1","displayName":"Santiago"},{"name":"projects/realtimescores-ce78f/locations/us-central1","locationId":"us-central1","displayName":"Iowa"},{"name":"projects/realtimescores-ce78f/locations/us-east1","locationId":"us-east1","displayName":"South Carolina"},{"name":"projects/realtimescores-ce78f/locations/us-east4","locationId":"us-east4","displayName":"Northern Virginia"},{"name":"projects/realtimescores-ce78f/locations/us-south1","locationId":"us-south1","displayName":"Dallas"},{"name":"projects/realtimescores-ce78f/locations/us-west1","locationId":"us-west1","displayName":"Oregon"},{"name":"projects/realtimescores-ce78f/locations/us-west2","locationId":"us-west2","displayName":"Los Angeles"},{"name":"projects/realtimescores-ce78f/locations/us-west3","locationId":"us-west3","displayName":"Salt Lake City"},{"name":"projects/realtimescores-ce78f/locations/us-west4","locationId":"us-west4","displayName":"Las Vegas"}]}
+[info] +  dataconnect: Detected existing apps . (web) 
+[debug] [2026-06-11T12:26:16.038Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:16.038Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:16.038Z] >>> [apiv2][query] GET https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances/puntajes-fdc [none]
+[debug] [2026-06-11T12:26:16.354Z] <<< [apiv2][status] GET https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances/puntajes-fdc 404
+[debug] [2026-06-11T12:26:16.355Z] <<< [apiv2][body] GET https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances/puntajes-fdc {"error":{"code":404,"message":"The Cloud SQL instance does not exist.","errors":[{"message":"The Cloud SQL instance does not exist.","domain":"global","reason":"instanceDoesNotExist"}]}}
+[debug] [2026-06-11T12:26:16.356Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:16.356Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:16.357Z] >>> [apiv2][query] GET https://monitoring.googleapis.com/v3/projects/realtimescores-ce78f/timeSeries/ filter=metric.type%3D%22serviceruntime.googleapis.com%2Fquota%2Fallocation%2Fusage%22+AND+metric.label.quota_metric+%3D+%22sqladmin.googleapis.com%2Ffdc_lifetime_free_trial_per_project%22&interval.endTime=2026-06-11T12%3A26%3A16.356Z&interval.startTime=2026-06-04T12%3A26%3A16.356Z
+[debug] [2026-06-11T12:26:17.059Z] <<< [apiv2][status] GET https://monitoring.googleapis.com/v3/projects/realtimescores-ce78f/timeSeries/ 200
+[debug] [2026-06-11T12:26:17.059Z] <<< [apiv2][body] GET https://monitoring.googleapis.com/v3/projects/realtimescores-ce78f/timeSeries/ {"unit":"1"}
+[debug] [2026-06-11T12:26:17.060Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:17.060Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:17.060Z] >>> [apiv2][query] POST https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances [none]
+[debug] [2026-06-11T12:26:17.060Z] >>> [apiv2][body] POST https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances {"name":"puntajes-fdc","region":"europe-southwest1","databaseVersion":"POSTGRES_18","settings":{"tier":"db-f1-micro","edition":"ENTERPRISE","ipConfiguration":{"authorizedNetworks":[]},"enableGoogleMlIntegration":false,"databaseFlags":[{"name":"cloudsql.iam_authentication","value":"on"}],"storageAutoResize":false,"userLabels":{"firebase-data-connect":"ft"},"insightsConfig":{"queryInsightsEnabled":true,"queryPlansPerMinute":5,"queryStringLength":1024}}}
+[debug] [2026-06-11T12:26:21.294Z] <<< [apiv2][status] POST https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances 200
+[debug] [2026-06-11T12:26:21.294Z] <<< [apiv2][body] POST https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances {"kind":"sql#operation","targetLink":"https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/instances/puntajes-fdc","status":"PENDING","user":"271099ac@gmail.com","insertTime":"2026-06-11T12:26:20.764Z","operationType":"CREATE","name":"ddda6661-43aa-434b-b852-31230000004c","targetId":"puntajes-fdc","selfLink":"https://sqladmin.googleapis.com/v1/projects/realtimescores-ce78f/operations/ddda6661-43aa-434b-b852-31230000004c","targetProject":"realtimescores-ce78f"}
+[debug] [2026-06-11T12:26:21.295Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:21.295Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:21.295Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/realtimescores-ce78f/billingInfo [none]
+[debug] [2026-06-11T12:26:21.616Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/realtimescores-ce78f/billingInfo 200
+[debug] [2026-06-11T12:26:21.616Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/realtimescores-ce78f/billingInfo {"name":"projects/realtimescores-ce78f/billingInfo","projectId":"realtimescores-ce78f","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: Cloud SQL Instance puntajes-fdc is being created.
+This instance is provided under the terms of the SQL Connect no-cost trial https://firebase.google.com/pricing
+
+   Meanwhile, your data are saved in a temporary database and will be migrated once complete. 
+   Your free trial instance won't show in google cloud console until a billing account is added.
+   However, you can still use the gcloud cli to monitor your database instance:
+
+	e.g. gcloud sql instances list --project realtimescores-ce78f
+ 
+[debug] [2026-06-11T12:26:21.621Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:21.621Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:21.621Z] >>> [apiv2][query] POST https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services service_id=puntajes
+[debug] [2026-06-11T12:26:21.621Z] >>> [apiv2][body] POST https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes"}
+[debug] [2026-06-11T12:26:23.778Z] <<< [apiv2][status] POST https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services 200
+[debug] [2026-06-11T12:26:23.778Z] <<< [apiv2][body] POST https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf","metadata":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.OperationMetadata","createTime":"2026-06-11T12:26:23.321703065Z","target":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes","verb":"create","requestedCancellation":false,"apiVersion":"v1"},"done":false}
+[debug] [2026-06-11T12:26:23.780Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:23.780Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:23.780Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf [none]
+[debug] [2026-06-11T12:26:23.856Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf 200
+[debug] [2026-06-11T12:26:23.856Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf","metadata":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.OperationMetadata","createTime":"2026-06-11T12:26:23.321703065Z","target":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes","verb":"create","requestedCancellation":false,"apiVersion":"v1"},"done":false}
+[debug] [2026-06-11T12:26:24.361Z] [LRO Poller] Retrying task index 0
+[debug] [2026-06-11T12:26:24.362Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:24.362Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:24.362Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf [none]
+[debug] [2026-06-11T12:26:24.432Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf 200
+[debug] [2026-06-11T12:26:24.432Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf","metadata":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.OperationMetadata","createTime":"2026-06-11T12:26:23.321703065Z","target":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes","verb":"create","requestedCancellation":false,"apiVersion":"v1"},"done":false}
+[debug] [2026-06-11T12:26:25.437Z] [LRO Poller] Retrying task index 0
+[debug] [2026-06-11T12:26:25.437Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:25.438Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:25.438Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf [none]
+[debug] [2026-06-11T12:26:25.460Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf 200
+[debug] [2026-06-11T12:26:25.461Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180781313-653f977c03bf7-34370b15-57e6fdbf","metadata":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.OperationMetadata","createTime":"2026-06-11T12:26:23.321703065Z","endTime":"2026-06-11T12:26:24.507531098Z","target":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes","verb":"create","requestedCancellation":false,"apiVersion":"v1"},"done":true,"response":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.Service","name":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes","createTime":"2026-06-11T12:26:23.318110925Z","updateTime":"2026-06-11T12:26:23.318110925Z","uid":"0fc39e37-22a0-48e3-8573-97572a155eac","reconciling":false,"etag":"gkjUkCTkLqqpDwbwp0BQwfszxMawYQee43E4ChcfAv0"}}
+[debug] [2026-06-11T12:26:25.465Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:25.465Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:25.465Z] >>> [apiv2][query] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask [none]
+[debug] [2026-06-11T12:26:25.465Z] >>> [apiv2][body] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask {"input":{"messages":[{"content":"app de puntajes","author":"USER"}]},"experienceContext":{"experience":"/appeco/firebase/fdc-schema-generator"}}
+[debug] [2026-06-11T12:26:31.272Z] <<< [apiv2][status] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask 200
+[debug] [2026-06-11T12:26:31.272Z] <<< [apiv2][body] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask {"output":{"messages":[{"content":"```graphql\ntype User @table {\n  displayName: String!\n  createdAt: Timestamp!\n  email: String\n  photoUrl: String\n}\n\ntype Game @table {\n  user: User!\n  name: String!\n  createdAt: Timestamp!\n  description: String\n}\n\ntype Participant @table {\n  game: Game!\n  name: String!\n  createdAt: Timestamp!\n}\n\ntype Round @table {\n  game: Game!\n  roundNumber: Int!\n  createdAt: Timestamp!\n}\n\ntype Score @table {\n  participant: Participant!\n  round: Round!\n  scoreValue: Int!\n  createdAt: Timestamp!\n}\n```\n"}]},"displayContext":{"additionalContext":{"@type":"type.googleapis.com/google.cloud.cloudaicompanion.v1main.FirebaseChatDisplayContext","firebaseFdcDisplayContext":{"schemaSyntaxError":""}}}}
+[debug] [2026-06-11T12:26:31.276Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:31.276Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:31.276Z] >>> [apiv2][query] PATCH https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main allowMissing=true&validateOnly=false
+[debug] [2026-06-11T12:26:31.276Z] >>> [apiv2][body] PATCH https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main","datasources":[{"postgresql":{"database":"fdcdb","cloudSql":{"instance":"projects/realtimescores-ce78f/locations/europe-southwest1/instances/puntajes-fdc"},"schemaValidation":"NONE"}}],"source":{"files":[{"path":"schema.gql","content":"type User @table {\n  displayName: String!\n  createdAt: Timestamp!\n  email: String\n  photoUrl: String\n}\n\ntype Game @table {\n  user: User!\n  name: String!\n  createdAt: Timestamp!\n  description: String\n}\n\ntype Participant @table {\n  game: Game!\n  name: String!\n  createdAt: Timestamp!\n}\n\ntype Round @table {\n  game: Game!\n  roundNumber: Int!\n  createdAt: Timestamp!\n}\n\ntype Score @table {\n  participant: Participant!\n  round: Round!\n  scoreValue: Int!\n  createdAt: Timestamp!\n}"}]}}
+[debug] [2026-06-11T12:26:31.873Z] <<< [apiv2][status] PATCH https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main 200
+[debug] [2026-06-11T12:26:31.874Z] <<< [apiv2][body] PATCH https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1","metadata":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.OperationMetadata","createTime":"2026-06-11T12:26:31.417343942Z","target":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main","verb":"update","requestedCancellation":false,"apiVersion":"v1"},"done":false}
+[debug] [2026-06-11T12:26:31.874Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:31.874Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:31.874Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1 [none]
+[debug] [2026-06-11T12:26:31.912Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1 200
+[debug] [2026-06-11T12:26:31.913Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1 {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1","metadata":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.OperationMetadata","createTime":"2026-06-11T12:26:31.417343942Z","target":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main","verb":"update","requestedCancellation":false,"apiVersion":"v1"},"done":false}
+[debug] [2026-06-11T12:26:32.417Z] [LRO Poller] Retrying task index 0
+[debug] [2026-06-11T12:26:32.417Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.418Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.418Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1 [none]
+[debug] [2026-06-11T12:26:32.456Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1 200
+[debug] [2026-06-11T12:26:32.456Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1 {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/operations/operation-1781180790958-653f978536a30-21ebc9d9-8dfbfcb1","metadata":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.OperationMetadata","createTime":"2026-06-11T12:26:31.417343942Z","endTime":"2026-06-11T12:26:31.624797394Z","target":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main","verb":"update","requestedCancellation":false,"apiVersion":"v1"},"done":true,"response":{"@type":"type.googleapis.com/google.firebase.dataconnect.v1.Schema","name":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main","createTime":"2026-06-11T12:26:31.411447021Z","updateTime":"2026-06-11T12:26:31.411447021Z","source":{"files":[{"path":"schema.gql","content":"type User @table {\n  displayName: String!\n  createdAt: Timestamp!\n  email: String\n  photoUrl: String\n}\n\ntype Game @table {\n  user: User!\n  name: String!\n  createdAt: Timestamp!\n  description: String\n}\n\ntype Participant @table {\n  game: Game!\n  name: String!\n  createdAt: Timestamp!\n}\n\ntype Round @table {\n  game: Game!\n  roundNumber: Int!\n  createdAt: Timestamp!\n}\n\ntype Score @table {\n  participant: Participant!\n  round: Round!\n  scoreValue: Int!\n  createdAt: Timestamp!\n}"}]},"uid":"044aeb1d-6e68-40e6-a05e-f059e8e5ee0e","reconciling":false,"datasources":[{"postgresql":{"database":"fdcdb","cloudSql":{"instance":"projects/realtimescores-ce78f/locations/europe-southwest1/instances/puntajes-fdc"},"schemaValidation":"NONE","ephemeral":true}}],"etag":"Vm1Hd7Jpz4xpg1vdVDe0r7L2EGNa9usXBNC8C_FboJ0"}}
+[debug] [2026-06-11T12:26:32.456Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.456Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.458Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.458Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.458Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.459Z] Checked if tokens are valid: true, expires at: 1781184195020
+[debug] [2026-06-11T12:26:32.459Z] >>> [apiv2][query] PATCH https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main allowMissing=true&validateOnly=false
+[debug] [2026-06-11T12:26:32.459Z] >>> [apiv2][body] PATCH https://firebasedataconnect.googleapis.com/v1/projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main {"name":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes/schemas/main","datasources":[{"postgresql":{"database":"fdcdb","cloudSql":{"instance":"projects/realtimescores-ce78f/locations/europe-southwest1/instances/puntajes-fdc"},"schemaMigration":"MIGRATE_COMPATIBLE"}}],"source":{"files":[{"path":"schema.gql","content":"type User @table {\n  displayName: String!\n  createdAt: Timestamp!\n  email: String\n  photoUrl: String\n}\n\ntype Game @table {\n  user: User!\n  name: String!\n  createdAt: Timestamp!\n  description: String\n}\n\ntype Participant @table {\n  game: Game!\n  name: String!\n  createdAt: Timestamp!\n}\n\ntype Round @table {\n  game: Game!\n  roundNumber: Int!\n  createdAt: Timestamp!\n}\n\ntype Score @table {\n  participant: Participant!\n  round: Round!\n  scoreValue: Int!\n  createdAt: Timestamp!\n}"}]}}
+[debug] [2026-06-11T12:26:32.459Z] >>> [apiv2][query] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask [none]
+[debug] [2026-06-11T12:26:32.459Z] >>> [apiv2][body] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask {"input":{"messages":[{"content":"Create 4 operations for an app using the instance schema with proper authentication.","author":"USER"}]},"experienceContext":{"experience":"/appeco/firebase/fdc-query-generator"},"clientContext":{"additionalContext":{"@type":"type.googleapis.com/google.cloud.cloudaicompanion.v1main.FirebaseChatRequestContext","fdcInfo":{"fdcServiceName":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes","requiresQuery":true}}}}
+[debug] [2026-06-11T12:26:32.460Z] >>> [apiv2][query] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask [none]
+[debug] [2026-06-11T12:26:32.460Z] >>> [apiv2][body] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask {"input":{"messages":[{"content":"Create a mutation to populate the database with some seed data.","author":"USER"}]},"experienceContext":{"experience":"/appeco/firebase/fdc-query-generator"},"clientContext":{"additionalContext":{"@type":"type.googleapis.com/google.cloud.cloudaicompanion.v1main.FirebaseChatRequestContext","fdcInfo":{"fdcServiceName":"projects/realtimescores-ce78f/locations/europe-southwest1/services/puntajes","requiresQuery":true}}}}
+[debug] [2026-06-11T12:26:32.546Z] <<< [apiv2][status] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask 501
+[debug] [2026-06-11T12:26:32.546Z] <<< [apiv2][body] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask {"error":{"code":501,"message":"Operation is not implemented, or supported, or enabled.","status":"UNIMPLEMENTED"}}
+[error] !!  dataconnect: Operation Generation failed... 
+[info] +  Wrote dataconnect\dataconnect.yaml 
+[info] +  Wrote dataconnect\schema\schema.gql 
+[error] 
+[error] Error: Request to https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask had HTTP Error: 501, Operation is not implemented, or supported, or enabled.
+[debug] [2026-06-11T12:26:32.649Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 501,
+      "message": "Operation is not implemented, or supported, or enabled.",
+      "status": "UNIMPLEMENTED"
+    }
+  },
+  "response": {
+    "statusCode": 501
+  }
+}
+[debug] [2026-06-11T12:26:32.652Z] <<< [apiv2][status] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask 501
+[debug] [2026-06-11T12:26:32.652Z] <<< [apiv2][body] POST https://cloudaicompanion.googleapis.com/v1beta/projects/realtimescores-ce78f/locations/global/instances/default:completeTask {"error":{"code":501,"message":"Operation is not implemented, or supported, or enabled.","status":"UNIMPLEMENTED"}}

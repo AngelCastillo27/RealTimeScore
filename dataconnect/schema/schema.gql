@@ -1,0 +1,32 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type Game @table {
+  user: User!
+  name: String!
+  createdAt: Timestamp!
+  description: String
+}
+
+type Participant @table {
+  game: Game!
+  name: String!
+  createdAt: Timestamp!
+}
+
+type Round @table {
+  game: Game!
+  roundNumber: Int!
+  createdAt: Timestamp!
+}
+
+type Score @table {
+  participant: Participant!
+  round: Round!
+  scoreValue: Int!
+  createdAt: Timestamp!
+}
