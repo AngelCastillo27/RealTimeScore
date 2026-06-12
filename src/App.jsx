@@ -17,10 +17,36 @@ export default function App() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [loggedInRole, setLoggedInRole] = useState('');
+
+  const activeRoleLabel = roles.find((item) => item.key === loggedInRole)?.label || 'Usuario';
 
   const chooseRole = (role) => {
     setSelectedRole(role.key);
     setOpenMenu(false);
+  };
+
+  const getLoginErrorMessage = (error) => {
+    const code = String(error?.code || '');
+    const message = String(error?.message || '');
+
+    if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found' || /invalid credential|wrong-password|user-not-found/i.test(message)) {
+      return 'Credenciales inválidas. Revisa el correo y la contraseña en Firebase Authentication.';
+    }
+
+    if (code === 'permission-denied' || /permission/i.test(message)) {
+      return 'Firebase está bloqueando acceso a Firestore. Revisa las reglas de la colección usuarios.';
+    }
+
+    if (code === 'auth/too-many-requests' || /too many requests/i.test(message)) {
+      return 'Demasiados intentos. Espera un momento antes de volver a intentar.';
+    }
+
+    if (code === 'auth/network-request-failed' || /network/i.test(message)) {
+      return 'No se pudo conectar con Firebase. Revisa tu conexión a internet.';
+    }
+
+    return 'No se pudo iniciar sesión. Revisa correo y contraseña.';
   };
 
   const handleLogin = async (e) => {
@@ -33,17 +59,26 @@ export default function App() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+      const normalizedEmail = user.email?.toLowerCase() || '';
       const userDocRef = doc(db, 'usuarios', user.uid);
-      const userDoc = await getDoc(userDocRef);
+      let userDoc = await getDoc(userDocRef);
 
       if (!userDoc.exists()) {
         await setDoc(userDocRef, {
           tipoUsuario: selectedRole,
-          email: user.email,
+          email: normalizedEmail,
           createdAt: new Date().toISOString(),
           sessionToken: null,
           lastLoginAt: null,
-        });
+        }, { merge: true });
+        userDoc = await getDoc(userDocRef);
+      }
+
+      if (!userDoc || !userDoc.exists()) {
+        setMessage('No se pudo crear o leer el documento de usuario en Firestore.');
+        await signOut(auth);
+        setLoading(false);
+        return;
       }
 
       const roleFromDb = userDoc.data().tipoUsuario;
@@ -74,10 +109,11 @@ export default function App() {
         });
       }
 
+      setLoggedInRole(selectedRole);
       setMessage('Inicio de sesión correcto.');
     } catch (error) {
       console.error(error);
-      setMessage('No se pudo iniciar sesión. Revisa correo y contraseña.');
+      setMessage(getLoginErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -111,7 +147,7 @@ export default function App() {
           )}
         </div>
 
-        {selectedRole && (
+        {selectedRole && !loggedInRole && (
           <form onSubmit={handleLogin} style={styles.form}>
             <label style={styles.label}>Correo</label>
             <input style={styles.input} type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="correo@ejemplo.com" />
@@ -126,7 +162,20 @@ export default function App() {
           </form>
         )}
 
-        {selectedRole && <ViewPrincipal role={selectedRole} />}
+        {loggedInRole ? (
+          <section style={styles.welcomeScreen}>
+            <div style={styles.welcomeCard}>
+              <p style={styles.eyebrow}>Bienvenido</p>
+              <h2 style={styles.welcomeTitle}>Hola, {activeRoleLabel}</h2>
+              <p style={styles.welcomeText}>
+                Has ingresado correctamente. Desde aquí puedes continuar con tu panel de trabajo.
+              </p>
+            </div>
+            <div style={styles.panelCard}>
+              <ViewPrincipal role={loggedInRole} />
+            </div>
+          </section>
+        ) : null}
       </section>
     </main>
   );
@@ -181,6 +230,22 @@ const styles = {
     cursor: 'pointer',
   },
   form: { display: 'grid', gap: 8, marginBottom: 16 },
+  welcomeScreen: { display: 'grid', gap: 14 },
+  welcomeCard: {
+    border: '1px solid rgba(56, 189, 248, 0.25)',
+    borderRadius: 18,
+    background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95))',
+    padding: 16,
+    boxShadow: '0 10px 24px rgba(8, 15, 27, 0.35)',
+  },
+  welcomeTitle: { fontSize: 22, margin: '6px 0 8px', color: '#f8fafc' },
+  welcomeText: { color: '#cbd5e1', margin: 0, lineHeight: 1.45 },
+  panelCard: {
+    border: '1px solid rgba(148, 163, 184, 0.18)',
+    borderRadius: 18,
+    background: 'rgba(15, 23, 42, 0.78)',
+    padding: 14,
+  },
   label: { color: '#bfdbfe', fontSize: 13 },
   input: {
     border: '1px solid #334155',

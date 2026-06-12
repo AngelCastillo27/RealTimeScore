@@ -1,0 +1,30 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /usuarios/{userId} {
+      allow get: if request.auth != null
+        && request.auth.uid == userId;
+
+      allow list: if request.auth != null
+        && resource.data.email == request.auth.token.email;
+
+      allow create: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.tipoUsuario in ['admin', 'organizacion', 'jurado'];
+
+      allow update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.tipoUsuario in ['admin', 'organizacion', 'jurado'];
+
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
