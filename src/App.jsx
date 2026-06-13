@@ -1,7 +1,13 @@
+//App.jsx es el componente principal de la aplicación. 
+// Maneja la selección de roles, el inicio de sesión y
+//  la visualización del panel principal según el rol del usuario.
+
 import { useState } from 'react';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import ViewPrincipal from './viewPrincipal.jsx';
+import ViewAdmin from './viewAdmin.jsx';
+import ViewOrg from './viewOrg.jsx';
+import ViewJurado from './viewJurado.jsx';
 import { auth, db } from './firebase.js';
 
 const roles = [
@@ -20,6 +26,18 @@ export default function App() {
   const [loggedInRole, setLoggedInRole] = useState('');
 
   const activeRoleLabel = roles.find((item) => item.key === loggedInRole)?.label || 'Usuario';
+  const roleColors = {
+    admin: '#111827',
+    organizacion: '#dc2626',
+    jurado: '#2563eb',
+  };
+  const welcomeColor = roleColors[loggedInRole] || '#f8fafc';
+
+  const rolePanel = {
+    admin: <ViewAdmin />,
+    organizacion: <ViewOrg />,
+    jurado: <ViewJurado />,
+  }[loggedInRole];
 
   const chooseRole = (role) => {
     setSelectedRole(role.key);
@@ -109,7 +127,7 @@ export default function App() {
         });
       }
 
-      setLoggedInRole(selectedRole);
+      setLoggedInRole(roleFromDb);
       setMessage('Inicio de sesión correcto.');
     } catch (error) {
       console.error(error);
@@ -166,14 +184,12 @@ export default function App() {
           <section style={styles.welcomeScreen}>
             <div style={styles.welcomeCard}>
               <p style={styles.eyebrow}>Bienvenido</p>
-              <h2 style={styles.welcomeTitle}>Hola, {activeRoleLabel}</h2>
+              <h2 style={{ ...styles.welcomeTitle, color: welcomeColor }}>Bienvenido {activeRoleLabel.toUpperCase()}!</h2>
               <p style={styles.welcomeText}>
                 Has ingresado correctamente. Desde aquí puedes continuar con tu panel de trabajo.
               </p>
             </div>
-            <div style={styles.panelCard}>
-              <ViewPrincipal role={loggedInRole} />
-            </div>
+            <div style={styles.panelCard}>{rolePanel}</div>
           </section>
         ) : null}
       </section>

@@ -1,3 +1,6 @@
+//viewPrincipal.jsx es el componente que muestra 
+// la vista principal según el rol del usuario.
+
 import React from 'react';
 
 export default function ViewPrincipal({ role }) {

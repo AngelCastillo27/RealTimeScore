@@ -1,3 +1,5 @@
+//firebase.js es el archivo de configuración de Firebase.
+
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
