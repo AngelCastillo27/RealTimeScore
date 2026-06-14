@@ -175,7 +175,7 @@ export default function App() {
           </>
         ) : (
           <section style={styles.simpleWelcome}>
-            <h2 style={{ ...styles.simpleWelcomeTitle, color: welcomeColor }}>Bienvenido {activeRoleLabel.toUpperCase()}!</h2>
+            <h2 style={{ ...styles.simpleWelcomeTitle, color: welcomeColor }}>BienvenidOOO {activeRoleLabel.toUpperCase()}!</h2>
           </section>
         )}
       </section>
