@@ -1,28 +1,29 @@
-//viewPrincipal.jsx es el componente que muestra 
+// viewPrincipal.jsx es el componente que muestra 
 // la vista principal según el rol del usuario.
-
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const ROLE_CONTENT = {
+  admin: {
+    title: 'Panel Admin',
+    intro: 'Acceso principal para administración, seguimiento y control del concurso.',
+    items: ['Gestionar usuarios', 'Ver puntajes globales', 'Administrar concursos'],
+  },
+  organizacion: {
+    title: 'Panel Organización',
+    intro: 'Acceso principal para la organización del evento y su coordinación.',
+    items: ['Actualizar información del evento', 'Revisar participantes', 'Consultar estado del concurso'],
+  },
+  jurado: {
+    title: 'Panel Jurado',
+    intro: 'Acceso principal para evaluación, observaciones y revisión de criterios.',
+    items: ['Calificar participantes', 'Registrar comentarios', 'Revisar rúbricas'],
+  },
+};
 
 export default function ViewPrincipal({ role }) {
-  const copy = {
-    admin: {
-      title: 'Panel Admin',
-      intro: 'Acceso principal para administración, seguimiento y control del concurso.',
-      items: ['Gestionar usuarios', 'Ver puntajes globales', 'Administrar concursos'],
-    },
-    organizacion: {
-      title: 'Panel Organización',
-      intro: 'Acceso principal para la organización del evento y su coordinación.',
-      items: ['Actualizar información del evento', 'Revisar participantes', 'Consultar estado del concurso'],
-    },
-    jurado: {
-      title: 'Panel Jurado',
-      intro: 'Acceso principal para evaluación, observaciones y revisión de criterios.',
-      items: ['Calificar participantes', 'Registrar comentarios', 'Revisar rúbricas'],
-    },
-  };
-
-  const data = copy[role] || copy.admin;
+  // Fallback al rol admin si el rol proporcionado no existe
+  const data = ROLE_CONTENT[role] || ROLE_CONTENT.admin;
 
   return (
     <section style={{ display: 'grid', gap: 10 }}>
@@ -36,3 +37,7 @@ export default function ViewPrincipal({ role }) {
     </section>
   );
 }
+
+ViewPrincipal.propTypes = {
+  role: PropTypes.oneOf(['admin', 'organizacion', 'jurado']),
+};

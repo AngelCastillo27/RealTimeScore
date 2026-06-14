@@ -5,9 +5,6 @@
 import { useState } from 'react';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
-import ViewAdmin from './viewAdmin.jsx';
-import ViewOrg from './viewOrg.jsx';
-import ViewJurado from './viewJurado.jsx';
 import { auth, db } from './firebase.js';
 
 const roles = [
@@ -27,17 +24,11 @@ export default function App() {
 
   const activeRoleLabel = roles.find((item) => item.key === loggedInRole)?.label || 'Usuario';
   const roleColors = {
-    admin: '#111827',
+    admin: '#edeef2',
     organizacion: '#dc2626',
     jurado: '#2563eb',
   };
   const welcomeColor = roleColors[loggedInRole] || '#f8fafc';
-
-  const rolePanel = {
-    admin: <ViewAdmin />,
-    organizacion: <ViewOrg />,
-    jurado: <ViewJurado />,
-  }[loggedInRole];
 
   const chooseRole = (role) => {
     setSelectedRole(role.key);
@@ -140,58 +131,53 @@ export default function App() {
   return (
     <main style={styles.page}>
       <section style={styles.card}>
-        <p style={styles.eyebrow}>Puntajes</p>
-        <h1 style={styles.title}>Selecciona tu usuario</h1>
-        <p style={styles.subtitle}>Elige tu rol desde el desplegable y, en el mismo lugar, inicia sesión.</p>
+        {!loggedInRole ? (
+          <>
+            <p style={styles.eyebrow}>Puntajes</p>
+            <h1 style={styles.title}>Selecciona tu usuario</h1>
+            <p style={styles.subtitle}>Elige tu rol desde el desplegable y, en el mismo lugar, inicia sesión.</p>
 
-        <div style={styles.dropdownWrap}>
-          <button type="button" onClick={() => setOpenMenu((prev) => !prev)} style={styles.dropdownButton}>
-            {selectedRole ? roles.find((item) => item.key === selectedRole)?.label : 'Elige un tipo de usuario'}
-          </button>
+            <div style={styles.dropdownWrap}>
+              <button type="button" onClick={() => setOpenMenu((prev) => !prev)} style={styles.dropdownButton}>
+                {selectedRole ? roles.find((item) => item.key === selectedRole)?.label : 'Elige un tipo de usuario'}
+              </button>
 
-          {openMenu && (
-            <div style={styles.dropdownMenu}>
-              {roles.map((role) => (
-                <button
-                  key={role.key}
-                  type="button"
-                  onClick={() => chooseRole(role)}
-                  style={styles.dropdownItem}
-                >
-                  {role.label}
+              {openMenu && (
+                <div style={styles.dropdownMenu}>
+                  {roles.map((role) => (
+                    <button
+                      key={role.key}
+                      type="button"
+                      onClick={() => chooseRole(role)}
+                      style={styles.dropdownItem}
+                    >
+                      {role.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {selectedRole && (
+              <form onSubmit={handleLogin} style={styles.form}>
+                <label style={styles.label}>Correo</label>
+                <input style={styles.input} type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="correo@ejemplo.com" />
+
+                <label style={styles.label}>Contraseña</label>
+                <input style={styles.input} type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="********" />
+
+                <button type="submit" style={styles.submitButton} disabled={loading}>
+                  {loading ? 'Ingresando...' : 'Iniciar sesión'}
                 </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {selectedRole && !loggedInRole && (
-          <form onSubmit={handleLogin} style={styles.form}>
-            <label style={styles.label}>Correo</label>
-            <input style={styles.input} type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="correo@ejemplo.com" />
-
-            <label style={styles.label}>Contraseña</label>
-            <input style={styles.input} type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="********" />
-
-            <button type="submit" style={styles.submitButton} disabled={loading}>
-              {loading ? 'Ingresando...' : 'Iniciar sesión'}
-            </button>
-            {message ? <p style={styles.message}>{message}</p> : null}
-          </form>
-        )}
-
-        {loggedInRole ? (
-          <section style={styles.welcomeScreen}>
-            <div style={styles.welcomeCard}>
-              <p style={styles.eyebrow}>Bienvenido</p>
-              <h2 style={{ ...styles.welcomeTitle, color: welcomeColor }}>Bienvenido {activeRoleLabel.toUpperCase()}!</h2>
-              <p style={styles.welcomeText}>
-                Has ingresado correctamente. Desde aquí puedes continuar con tu panel de trabajo.
-              </p>
-            </div>
-            <div style={styles.panelCard}>{rolePanel}</div>
+                {message ? <p style={styles.message}>{message}</p> : null}
+              </form>
+            )}
+          </>
+        ) : (
+          <section style={styles.simpleWelcome}>
+            <h2 style={{ ...styles.simpleWelcomeTitle, color: welcomeColor }}>Bienvenido {activeRoleLabel.toUpperCase()}!</h2>
           </section>
-        ) : null}
+        )}
       </section>
     </main>
   );
@@ -246,22 +232,13 @@ const styles = {
     cursor: 'pointer',
   },
   form: { display: 'grid', gap: 8, marginBottom: 16 },
-  welcomeScreen: { display: 'grid', gap: 14 },
-  welcomeCard: {
-    border: '1px solid rgba(56, 189, 248, 0.25)',
-    borderRadius: 18,
-    background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95))',
-    padding: 16,
-    boxShadow: '0 10px 24px rgba(8, 15, 27, 0.35)',
+  simpleWelcome: {
+    minHeight: 160,
+    display: 'grid',
+    placeItems: 'center',
+    textAlign: 'center',
   },
-  welcomeTitle: { fontSize: 22, margin: '6px 0 8px', color: '#f8fafc' },
-  welcomeText: { color: '#cbd5e1', margin: 0, lineHeight: 1.45 },
-  panelCard: {
-    border: '1px solid rgba(148, 163, 184, 0.18)',
-    borderRadius: 18,
-    background: 'rgba(15, 23, 42, 0.78)',
-    padding: 14,
-  },
+  simpleWelcomeTitle: { fontSize: 26, margin: 0, lineHeight: 1.2 },
   label: { color: '#bfdbfe', fontSize: 13 },
   input: {
     border: '1px solid #334155',
