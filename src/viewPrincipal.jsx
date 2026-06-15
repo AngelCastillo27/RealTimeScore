@@ -1,7 +1,6 @@
 // viewPrincipal.jsx es el componente que muestra 
 // la vista principal según el rol del usuario.
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const ROLE_CONTENT = {
   admin: {
@@ -37,7 +36,3 @@ export default function ViewPrincipal({ role }) {
     </section>
   );
 }
-
-ViewPrincipal.propTypes = {
-  role: PropTypes.oneOf(['admin', 'organizacion', 'jurado']),
-};
