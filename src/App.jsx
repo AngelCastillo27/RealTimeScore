@@ -135,7 +135,7 @@ export default function App() {
         {!loggedInRole ? (
           <>
             <p style={styles.eyebrow}>Puntajes</p>
-            <h1 style={styles.title}>Selecciona tu USUARIO++</h1>
+            <h1 style={styles.title}>Selecciona tu usuario</h1>
             <p style={styles.subtitle}>Elige tu rol desde el desplegable y, en el mismo lugar, inicia sesión.</p>
 
             <div style={styles.dropdownWrap}>
