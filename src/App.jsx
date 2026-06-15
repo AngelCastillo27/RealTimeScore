@@ -5,6 +5,7 @@
 import { useState } from 'react';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import ViewPrincipal from './viewPrincipal'; // Importa ViewPrincipal
 import { auth, db } from './firebase.js';
 
 const roles = [
@@ -174,9 +175,7 @@ export default function App() {
             )}
           </>
         ) : (
-          <section style={styles.simpleWelcome}>
-            <h2 style={{ ...styles.simpleWelcomeTitle, color: welcomeColor }}>Bienvenido+++_1 {activeRoleLabel.toUpperCase()}!</h2>
-          </section>
+          <ViewPrincipal role={loggedInRole} />
         )}
       </section>
     </main>
