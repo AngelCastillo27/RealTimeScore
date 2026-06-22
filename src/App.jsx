@@ -2,9 +2,9 @@
 // Maneja la selección de roles, el inicio de sesión y
 //  la visualización del panel principal según el rol del usuario.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot, runTransaction, setDoc } from 'firebase/firestore';
 import ViewPrincipal from './viewPrincipal'; // Importa ViewPrincipal
 import { auth, db } from './firebase.js';
 
@@ -14,6 +14,11 @@ const roles = [
   { key: 'jurado', label: 'Jurado' },
 ];
 
+const createSessionToken = () => {
+  if (crypto?.randomUUID) return crypto.randomUUID();
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+};
+
 export default function App() {
   const [openMenu, setOpenMenu] = useState(false);
   const [selectedRole, setSelectedRole] = useState('');
@@ -22,6 +27,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [loggedInRole, setLoggedInRole] = useState('');
+  const [activeSession, setActiveSession] = useState(null);
 
   const activeRoleLabel = roles.find((item) => item.key === loggedInRole)?.label || 'Usuario';
   const roleColors = {
@@ -34,6 +40,75 @@ export default function App() {
   const chooseRole = (role) => {
     setSelectedRole(role.key);
     setOpenMenu(false);
+  };
+
+  useEffect(() => {
+    if (!activeSession) return undefined;
+
+    const userDocRef = doc(db, 'usuarios', activeSession.uid);
+    return onSnapshot(userDocRef, async (snapshot) => {
+      const serverToken = snapshot.data()?.sessionToken || null;
+
+      if (serverToken && serverToken !== activeSession.sessionToken) {
+        localStorage.removeItem(activeSession.sessionKey);
+        setActiveSession(null);
+        setLoggedInRole('');
+        setMessage('Tu sesiÃ³n se cerrÃ³ porque esta cuenta se abriÃ³ en otro dispositivo.');
+        await signOut(auth);
+      }
+    });
+  }, [activeSession]);
+
+  const reserveSession = async (userDocRef, user, role) => {
+    const sessionKey = `scoreSession:${user.uid}`;
+    const browserToken = localStorage.getItem(sessionKey);
+    const nextToken = createSessionToken();
+
+    const result = await runTransaction(db, async (transaction) => {
+      const userSnapshot = await transaction.get(userDocRef);
+
+      if (!userSnapshot.exists()) {
+        return {
+          ok: false,
+          reason: 'No se pudo crear o leer el documento de usuario en Firestore.',
+        };
+      }
+
+      const userData = userSnapshot.data();
+      if (userData.tipoUsuario !== role) {
+        return {
+          ok: false,
+          reason: `Esta cuenta no corresponde al rol seleccionado (${role}).`,
+        };
+      }
+
+      const existingToken = userData.sessionToken || null;
+      if (existingToken && existingToken !== browserToken) {
+        return {
+          ok: false,
+          reason: 'Esta cuenta ya esta abierta en otro dispositivo o navegador.',
+        };
+      }
+
+      transaction.update(userDocRef, {
+        sessionToken: nextToken,
+        lastLoginAt: new Date().toISOString(),
+      });
+
+      return {
+        ok: true,
+        role: userData.tipoUsuario,
+        uid: user.uid,
+        sessionKey,
+        sessionToken: nextToken,
+      };
+    });
+
+    if (result.ok) {
+      localStorage.setItem(result.sessionKey, result.sessionToken);
+    }
+
+    return result;
   };
 
   const getLoginErrorMessage = (error) => {
@@ -91,35 +166,20 @@ export default function App() {
         return;
       }
 
-      const roleFromDb = userDoc.data().tipoUsuario;
-      if (roleFromDb !== selectedRole) {
-        setMessage(`Esta cuenta no corresponde al rol seleccionado (${selectedRole}).`);
+      const sessionResult = await reserveSession(userDocRef, user, selectedRole);
+      if (!sessionResult.ok) {
+        setMessage(sessionResult.reason);
         await signOut(auth);
         setLoading(false);
         return;
       }
 
-      if (roleFromDb === 'jurado' || roleFromDb === 'organizacion') {
-        const sessionToken = crypto.randomUUID();
-        const sessionKey = `scoreSession:${user.uid}`;
-        const currentBrowserToken = localStorage.getItem(sessionKey);
-        const existingSessionToken = userDoc.data().sessionToken || null;
-
-        if (existingSessionToken && existingSessionToken !== currentBrowserToken) {
-          setMessage('Esta cuenta ya está abierta en otro dispositivo o navegador.');
-          await signOut(auth);
-          setLoading(false);
-          return;
-        }
-
-        localStorage.setItem(sessionKey, sessionToken);
-        await updateDoc(userDocRef, {
-          sessionToken,
-          lastLoginAt: new Date().toISOString(),
-        });
-      }
-
-      setLoggedInRole(roleFromDb);
+      setLoggedInRole(sessionResult.role);
+      setActiveSession({
+        uid: sessionResult.uid,
+        sessionKey: sessionResult.sessionKey,
+        sessionToken: sessionResult.sessionToken,
+      });
       setMessage('Inicio de sesión correcto.');
     } catch (error) {
       console.error(error);
