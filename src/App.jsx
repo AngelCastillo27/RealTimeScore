@@ -2,8 +2,8 @@
 // Maneja la selección de roles, el inicio de sesión y
 //  la visualización del panel principal según el rol del usuario.
 
-import { useEffect, useState } from 'react';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { useEffect, useRef, useState } from 'react';
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { doc, getDoc, onSnapshot, runTransaction, setDoc } from 'firebase/firestore';
 import ViewPrincipal from './viewPrincipal'; // Importa ViewPrincipal
 import { auth, db } from './firebase.js';
@@ -20,11 +20,13 @@ const createSessionToken = () => {
 };
 
 export default function App() {
+  const loginInProgressRef = useRef(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [selectedRole, setSelectedRole] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const [message, setMessage] = useState('');
   const [loggedInRole, setLoggedInRole] = useState('');
   const [activeSession, setActiveSession] = useState(null);
@@ -43,13 +45,56 @@ export default function App() {
   };
 
   useEffect(() => {
+    return onAuthStateChanged(auth, async (user) => {
+      if (loginInProgressRef.current) {
+        setCheckingSession(false);
+        return;
+      }
+
+      if (!user) {
+        setCheckingSession(false);
+        return;
+      }
+
+      const sessionKey = `scoreSession:${user.uid}`;
+      const browserToken = localStorage.getItem(sessionKey);
+      const userDocRef = doc(db, 'usuarios', user.uid);
+
+      try {
+        const userDoc = await getDoc(userDocRef);
+        const userData = userDoc.exists() ? userDoc.data() : null;
+        const serverToken = userData?.sessionToken || null;
+
+        if (browserToken && serverToken === browserToken && userData?.tipoUsuario) {
+          setLoggedInRole(userData.tipoUsuario);
+          setActiveSession({
+            uid: user.uid,
+            sessionKey,
+            sessionToken: browserToken,
+          });
+          setMessage('');
+        } else {
+          localStorage.removeItem(sessionKey);
+          await signOut(auth);
+        }
+      } catch (error) {
+        console.error(error);
+        localStorage.removeItem(sessionKey);
+        await signOut(auth);
+      } finally {
+        setCheckingSession(false);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     if (!activeSession) return undefined;
 
     const userDocRef = doc(db, 'usuarios', activeSession.uid);
     return onSnapshot(userDocRef, async (snapshot) => {
       const serverToken = snapshot.data()?.sessionToken || null;
 
-      if (serverToken && serverToken !== activeSession.sessionToken) {
+      if (serverToken !== activeSession.sessionToken) {
         localStorage.removeItem(activeSession.sessionKey);
         setActiveSession(null);
         setLoggedInRole('');
@@ -111,6 +156,43 @@ export default function App() {
     return result;
   };
 
+  const handleLogout = async () => {
+    setLoading(true);
+
+    try {
+      const session = activeSession;
+
+      if (session) {
+        const userDocRef = doc(db, 'usuarios', session.uid);
+        await runTransaction(db, async (transaction) => {
+          const userSnapshot = await transaction.get(userDocRef);
+          const serverToken = userSnapshot.data()?.sessionToken || null;
+
+          if (serverToken === session.sessionToken) {
+            transaction.update(userDocRef, {
+              sessionToken: null,
+              lastLogoutAt: new Date().toISOString(),
+            });
+          }
+        });
+
+        localStorage.removeItem(session.sessionKey);
+      }
+
+      setActiveSession(null);
+      setLoggedInRole('');
+      setEmail('');
+      setPassword('');
+      setMessage('Sesion cerrada. Ingresa tus credenciales para volver a entrar.');
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
+      setMessage('No se pudo cerrar sesion. Intentalo de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const getLoginErrorMessage = (error) => {
     const code = String(error?.code || '');
     const message = String(error?.message || '');
@@ -140,6 +222,7 @@ export default function App() {
 
     setLoading(true);
     setMessage('');
+    loginInProgressRef.current = true;
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -185,9 +268,20 @@ export default function App() {
       console.error(error);
       setMessage(getLoginErrorMessage(error));
     } finally {
+      loginInProgressRef.current = false;
       setLoading(false);
     }
   };
+
+  if (checkingSession) {
+    return (
+      <main style={styles.page}>
+        <section style={styles.card}>
+          <p style={styles.message}>Cargando sesion...</p>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main style={styles.page}>
@@ -235,7 +329,13 @@ export default function App() {
             )}
           </>
         ) : (
-          <ViewPrincipal role={loggedInRole} />
+          <ViewPrincipal
+            role={loggedInRole}
+            userId={activeSession?.uid}
+            onLogout={handleLogout}
+            loggingOut={loading}
+            sessionMessage={message}
+          />
         )}
       </section>
     </main>
@@ -254,7 +354,7 @@ const styles = {
   },
   card: {
     width: '100%',
-    maxWidth: 480,
+    maxWidth: 1220,
     background: 'rgba(15, 23, 42, 0.92)',
     border: '1px solid rgba(148, 163, 184, 0.22)',
     borderRadius: 24,
@@ -291,6 +391,7 @@ const styles = {
     cursor: 'pointer',
   },
   form: { display: 'grid', gap: 8, marginBottom: 16 },
+  panel: { display: 'grid', gap: 18 },
   simpleWelcome: {
     minHeight: 160,
     display: 'grid',
@@ -310,6 +411,15 @@ const styles = {
     border: 0,
     borderRadius: 12,
     background: '#2563eb',
+    color: '#eff6ff',
+    padding: '10px 12px',
+    cursor: 'pointer',
+    fontWeight: 700,
+  },
+  logoutButton: {
+    border: '1px solid #475569',
+    borderRadius: 12,
+    background: '#0f172a',
     color: '#eff6ff',
     padding: '10px 12px',
     cursor: 'pointer',

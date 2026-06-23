@@ -2,25 +2,91 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function userRole() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        ? get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.tipoUsuario
+        : null;
+    }
+
+    function isOrg() {
+      return userRole() in ['organizacion', 'admin'];
+    }
+
+    function isJury() {
+      return userRole() == 'jurado';
+    }
 
     match /usuarios/{userId} {
-      allow get: if request.auth != null
-        && request.auth.uid == userId;
+      allow get: if signedIn()
+        && (request.auth.uid == userId || isOrg());
 
-      allow list: if request.auth != null
-        && resource.data.email == request.auth.token.email;
+      allow list: if signedIn() && isOrg();
 
-      allow create: if request.auth != null
+      allow create: if signedIn()
         && request.auth.uid == userId
         && request.resource.data.email == request.auth.token.email
         && request.resource.data.tipoUsuario in ['admin', 'organizacion', 'jurado'];
 
-      allow update: if request.auth != null
-        && request.auth.uid == userId
+      allow update: if signedIn()
+        && (request.auth.uid == userId || isOrg())
         && request.resource.data.email == request.auth.token.email
         && request.resource.data.tipoUsuario in ['admin', 'organizacion', 'jurado'];
 
       allow delete: if false;
+    }
+
+    match /concursos/{contestId} {
+      allow read: if signedIn();
+      allow create, update, delete: if isOrg();
+
+      match /participants/{participantId} {
+        allow read: if signedIn();
+        allow create, update, delete: if isOrg();
+      }
+
+      match /configs/{configId} {
+        allow read: if signedIn();
+        allow create, update, delete: if isOrg();
+      }
+
+      match /groups/{groupId} {
+        allow read: if signedIn();
+        allow create, update, delete: if isOrg();
+      }
+
+      match /assignments/{assignmentId} {
+        allow read: if signedIn();
+        allow create, update, delete: if isOrg();
+      }
+
+      match /scores/{scoreId} {
+        allow read: if signedIn();
+        allow create, update: if isOrg()
+          || (isJury() && request.resource.data.judgeUid == request.auth.uid);
+        allow delete: if isOrg();
+      }
+
+      match /judgeGroupStatus/{statusId} {
+        allow read: if signedIn();
+        allow create, update: if isOrg()
+          || (isJury() && request.resource.data.judgeUid == request.auth.uid);
+        allow delete: if isOrg();
+      }
+
+      match /stageResults/{resultId} {
+        allow read: if signedIn();
+        allow create, update, delete: if isOrg();
+      }
+
+      match /audit/{auditId} {
+        allow read, create: if isOrg();
+        allow update, delete: if false;
+      }
     }
 
     match /{document=**} {
